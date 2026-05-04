@@ -5,136 +5,190 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            font-size: 12px;
+            font-size: 11px;
             color: #1f2937;
-            margin: 30px;
-        }
-        .header {
-            display: block;
-            margin-bottom: 30px;
+            margin: 24px;
         }
         .title {
-            font-size: 30px;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            color: #0f172a;
+            color: #36a269;
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 2px;
         }
-        .columns {
+        .subtitle {
+            color: #3f9d79;
+            font-size: 34px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .invoice-ref {
+            font-size: 22px;
+            color: #2b2f33;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+        table.party {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 24px;
+            margin-bottom: 10px;
         }
-        .columns td {
-            vertical-align: top;
+        .party td {
             width: 50%;
-            padding-right: 16px;
+            vertical-align: top;
+            font-size: 11px;
+            line-height: 1.32;
+            padding-right: 10px;
         }
-        .meta {
-            margin-bottom: 18px;
-            line-height: 1.6;
+        .org-name {
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 3px;
         }
-        .label {
-            color: #6b7280;
-            font-weight: bold;
-            display: inline-block;
-            width: 115px;
+        .meta-row {
+            display: flex;
+            gap: 22px;
+            margin: 8px 0 10px;
+            font-size: 11px;
+        }
+        .meta-row span {
+            white-space: nowrap;
         }
         table.items {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 12px;
+            margin-top: 5px;
         }
         .items th {
-            background: #e2e8f0;
-            border: 1px solid #cbd5e1;
-            padding: 10px 8px;
+            background: #66b594;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            border: 1px solid #58a486;
+            padding: 6px 5px;
             text-align: left;
         }
         .items td {
-            border: 1px solid #cbd5e1;
-            padding: 10px 8px;
+            border: 1px solid #d2ddd8;
+            padding: 6px 5px;
+            font-size: 11px;
         }
-        .num { text-align: right; }
+        .num {
+            text-align: right;
+        }
         .totals {
-            width: 45%;
+            width: 46%;
             margin-left: auto;
-            margin-top: 16px;
+            margin-top: 0;
             border-collapse: collapse;
         }
         .totals td {
-            border: 1px solid #cbd5e1;
-            padding: 8px;
+            border: 1px solid #d2ddd8;
+            padding: 6px 8px;
+            font-size: 11px;
         }
         .totals .label-cell {
-            background: #f8fafc;
-            font-weight: bold;
+            background: #f2f5f4;
+            font-weight: 700;
         }
         .totals .grand-total {
-            background: #dbeafe;
-            font-weight: bold;
-            font-size: 13px;
+            color: #2f986b;
+            font-weight: 700;
         }
-        .footer {
-            margin-top: 30px;
-            color: #374151;
+        .bottom {
+            display: flex;
+            margin-top: 10px;
+            gap: 16px;
+        }
+        .payment {
+            flex: 1;
             font-size: 11px;
+            line-height: 1.34;
+        }
+        .payment h4 {
+            margin: 0 0 5px;
+            color: #2f986b;
+            font-size: 12px;
+        }
+        .payment p {
+            margin: 2px 0;
+        }
+        .rib {
+            margin-top: 8px;
+        }
+        .rib strong {
+            display: block;
+            margin-bottom: 2px;
         }
     </style>
 </head>
 <body>
-<div class="header">
     <div class="title">Facture</div>
-    <div class="meta"><span class="label">Numéro :</span> {{invoiceNumber}}</div>
-    <div class="meta"><span class="label">Date d'émission :</span> {{issueDate}}</div>
-    <div class="meta"><span class="label">Échéance :</span> {{dueDate}}</div>
-    <div class="meta"><span class="label">Période :</span> {{periodLabel}}</div>
-</div>
+    <div class="subtitle">Prestation {{periodLabel}}</div>
+    <div class="invoice-ref">N° {{invoiceNumber}}</div>
 
-<table class="columns">
-    <tr>
-        <td>
-            <strong>Prestataire</strong><br/>
-            {{companyName}}<br/>
-            {{companyAddress}}<br/>
-            {{companyPostalCode}} {{companyCity}}<br/>
-            {{companyCountry}}<br/>
-            SIRET : {{companySiret}}<br/>
-            TVA : {{companyVat}}<br/>
-            Email : {{companyEmail}}
-        </td>
-        <td>
-            <strong>Client</strong><br/>
-            {{clientName}}<br/>
-            {{clientAddress}}<br/>
-            {{clientPostalCode}} {{clientCity}}<br/>
-            {{clientCountry}}
-        </td>
-    </tr>
-</table>
+    <table class="party">
+        <tr>
+            <td>
+                <div class="org-name">{{companyName}}</div>
+                {{companyAddress}}<br/>
+                {{companyPostalCode}} {{companyCity}}<br/>
+                N° SIRET : {{companySiret}}<br/>
+                N° TVA : {{companyVat}}
+            </td>
+            <td>
+                <div class="org-name">{{clientName}}</div>
+                {{clientAddress}}<br/>
+                {{clientPostalCode}} {{clientCity}}<br/>
+                N° SIRET : {{clientSiret}}<br/>
+                N° TVA : {{clientVat}}
+            </td>
+        </tr>
+    </table>
 
-<table class="items">
-    <thead>
-    <tr>
-        <th>Description</th>
-        <th class="num">Qté</th>
-        <th class="num">Prix unitaire HT</th>
-        <th class="num">Total HT</th>
-    </tr>
-    </thead>
-    <tbody>
-    {{lineItems}}
-    </tbody>
-</table>
+    <div class="meta-row">
+        <span>Date d'émission : {{issueDate}}</span>
+        <span>Date de règlement : {{dueDate}}</span>
+    </div>
 
-<table class="totals">
-    <tr><td class="label-cell">Total HT</td><td class="num">{{totalHt}} €</td></tr>
-    <tr><td class="label-cell">TVA ({{vatRate}} %)</td><td class="num">{{vatAmount}} €</td></tr>
-    <tr><td class="label-cell grand-total">Total TTC</td><td class="num grand-total">{{totalTtc}} €</td></tr>
-</table>
+    <table class="items">
+        <thead>
+            <tr>
+                <th>Désignation et description</th>
+                <th class="num">Unités</th>
+                <th class="num">Quantité</th>
+                <th class="num">Prix u. HT</th>
+                <th class="num">Montant HT</th>
+                <th class="num">Montant TTC</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{lineItems}}
+        </tbody>
+    </table>
 
-<div class="footer">
-    Paiement à 45 jours fin de mois. Merci pour votre confiance.
-</div>
+    <div class="bottom">
+        <div class="payment">
+            <h4>Conditions de paiement</h4>
+            <p><strong>45 jours</strong></p>
+            <p><strong>Pénalités de retard</strong></p>
+            <p>3 fois le taux légal</p>
+            <p><strong>Indemnité forfaitaire pour frais de recouvrement</strong></p>
+            <p>40 €</p>
+            <p>Moyens de paiement</p>
+            <p>Virement</p>
+            <div class="rib">
+                <strong>Relevé d'identité Bancaire</strong>
+                <p>IBAN&nbsp;&nbsp;&nbsp;FR7640619805000004049065158</p>
+                <p>BIC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BOUSFRPPXXX</p>
+            </div>
+        </div>
+
+        <table class="totals">
+            <tr><td class="label-cell">Total HT</td><td class="num">{{totalHt}} €</td></tr>
+            <tr><td class="label-cell">TVA (20%)</td><td class="num">{{vatAmount}} €</td></tr>
+            <tr><td class="label-cell grand-total">Total TTC</td><td class="num grand-total">{{totalTtc}} €</td></tr>
+        </table>
+    </div>
 </body>
 </html>
