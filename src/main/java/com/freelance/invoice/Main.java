@@ -11,27 +11,6 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
-        Party company = new Party(
-                "Jean Dupont EI",
-                "15 Rue de Rivoli",
-                "75001",
-                "Paris",
-                "France",
-                "123 456 789 00012",
-                "FR12123456789",
-                "contact@jeandupont.dev"
-        );
-
-        Party client = new Party(
-                "Tech Client SAS",
-                "22 Avenue de l'Opéra",
-                "75002",
-                "Paris",
-                "France",
-                "",
-                "",
-                "finance@techclient.fr"
-        );
 
         SequenceService sequenceService = new SequenceService();
         InvoiceService invoiceService = new InvoiceService(sequenceService);
@@ -39,8 +18,8 @@ public class Main {
         PdfService pdfService = new PdfService();
 
         var invoice = invoiceService.createMonthlyInvoice(
-                company,
-                client,
+                null,
+                null,
                 "Avril 2026",
                 21,
                 LocalDate.of(2026, 4, 30),
@@ -48,7 +27,7 @@ public class Main {
         );
 
         String html = htmlRenderer.render(invoice);
-        Path output = Path.of("output", invoice.invoiceNumber() + ".pdf");
+        Path output = Path.of("./", invoice.invoiceNumber() + ".pdf");
         pdfService.generatePdf(html, output);
 
         System.out.println("Invoice generated: " + output.toAbsolutePath());

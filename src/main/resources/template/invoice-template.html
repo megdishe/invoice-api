@@ -9,6 +9,7 @@
             color: #1f2937;
             margin: 24px;
         }
+
         .title {
             color: #36a269;
             font-size: 42px;
@@ -16,23 +17,27 @@
             line-height: 1;
             margin-bottom: 2px;
         }
+
         .subtitle {
             color: #3f9d79;
             font-size: 34px;
             font-weight: 700;
             margin-bottom: 12px;
         }
+
         .invoice-ref {
             font-size: 22px;
             color: #2b2f33;
             font-weight: 600;
             margin-bottom: 14px;
         }
+
         table.party {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 10px;
         }
+
         .party td {
             width: 50%;
             vertical-align: top;
@@ -40,25 +45,28 @@
             line-height: 1.32;
             padding-right: 10px;
         }
+
         .org-name {
             font-weight: 700;
             text-transform: uppercase;
             margin-bottom: 3px;
         }
+
         .meta-row {
-            display: flex;
-            gap: 22px;
             margin: 8px 0 10px;
             font-size: 11px;
         }
+
         .meta-row span {
-            white-space: nowrap;
+            margin-right: 20px;
         }
+
         table.items {
             width: 100%;
             border-collapse: collapse;
             margin-top: 5px;
         }
+
         .items th {
             background: #66b594;
             color: #ffffff;
@@ -68,134 +76,164 @@
             padding: 6px 5px;
             text-align: left;
         }
+
         .items td {
             border: 1px solid #d2ddd8;
             padding: 6px 5px;
             font-size: 11px;
         }
+
         .num {
             text-align: right;
         }
+
+        /* SUMMARY BLOCK */
+        .summary {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .summary td {
+            vertical-align: top;
+        }
+
+        /* LEFT: CONDITIONS */
+        .conditions {
+            width: 60%;
+            padding-right: 12px;
+            font-size: 11px;
+            line-height: 1.45;
+        }
+
+        .conditions h4 {
+            margin: 0 0 6px;
+            color: #2f986b;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .conditions p {
+            margin: 3px 0;
+        }
+
+        .rib {
+            margin-top: 6px;
+        }
+
+        /* RIGHT: TOTALS */
+        .totals-wrapper {
+            width: 40%;
+        }
+
         .totals {
-            width: 46%;
-            margin-left: auto;
-            margin-top: 8px;
+            width: 100%;
             border-collapse: collapse;
         }
+
         .totals td {
             border: 1px solid #d2ddd8;
             padding: 6px 8px;
             font-size: 11px;
         }
+
         .totals .label-cell {
             background: #f2f5f4;
-            font-weight: 700;
+            font-weight: 600;
         }
+
         .totals .grand-total {
             color: #2f986b;
             font-weight: 700;
         }
-        .bottom {
-            display: flex;
-            margin-top: 10px;
-            gap: 16px;
-            align-items: flex-start;
-            justify-content: space-between;
-        }
-        .bottom .totals {
-            width: 46%;
-            margin: 0;
-        }
-        .payment {
-            width: 46%;
-            font-size: 11px;
-            line-height: 1.34;
-        }
-        .payment h4 {
-            margin: 0 0 5px;
-            color: #2f986b;
-            font-size: 12px;
-        }
-        .payment p {
-            margin: 2px 0;
-        }
-        .rib {
-            margin-top: 8px;
-        }
-        .rib strong {
-            display: block;
-            margin-bottom: 2px;
-        }
     </style>
 </head>
 <body>
-    <div class="title">Facture</div>
-    <div class="subtitle">Prestation {{periodLabel}}</div>
-    <div class="invoice-ref">N° {{invoiceNumber}}</div>
 
-    <table class="party">
-        <tr>
-            <td>
-                <div class="org-name">{{companyName}}</div>
-                {{companyAddress}}<br/>
-                {{companyPostalCode}} {{companyCity}}<br/>
-                N° SIRET : {{companySiret}}<br/>
-                N° TVA : {{companyVat}}
-            </td>
-            <td>
-                <div class="org-name">{{clientName}}</div>
-                {{clientAddress}}<br/>
-                {{clientPostalCode}} {{clientCity}}<br/>
-                N° SIRET : {{clientSiret}}<br/>
-                N° TVA : {{clientVat}}
-            </td>
-        </tr>
-    </table>
+<div class="title">Facture</div>
+<div class="subtitle">Prestation {{periodLabel}}</div>
+<div class="invoice-ref">N° {{invoiceNumber}}</div>
 
-    <div class="meta-row">
-        <span>Date d'émission : {{issueDate}}</span>
-        <span>Date de règlement : {{dueDate}}</span>
-    </div>
+<table class="party">
+    <tr>
+        <td>
+            <div class="org-name">{{companyName}}</div>
+            {{companyAddress}}<br/>
+            {{companyPostalCode}} {{companyCity}}<br/>
+            N° SIRET : {{companySiret}}<br/>
+            N° TVA : {{companyVat}}
+        </td>
+        <td>
+            <div class="org-name">{{clientName}}</div>
+            {{clientAddress}}<br/>
+            {{clientPostalCode}} {{clientCity}}<br/>
+            N° SIRET : {{clientSiret}}<br/>
+            N° TVA : {{clientVat}}
+        </td>
+    </tr>
+</table>
 
-    <table class="items">
-        <thead>
-            <tr>
-                <th>Désignation et description</th>
-                <th class="num">Unités</th>
-                <th class="num">Quantité</th>
-                <th class="num">Prix u. HT</th>
-                <th class="num">Montant HT</th>
-                <th class="num">Montant TTC</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{lineItems}}
-        </tbody>
-    </table>
+<div class="meta-row">
+    <span>Date d'émission : {{issueDate}}</span>
+    <span>Date de règlement : {{dueDate}}</span>
+</div>
 
-    <div class="bottom">
-        <div class="payment">
+<table class="items">
+    <thead>
+    <tr>
+        <th>Désignation et description</th>
+        <th class="num">Unités</th>
+        <th class="num">Quantité</th>
+        <th class="num">Prix u. HT</th>
+        <th class="num">Montant HT</th>
+        <th class="num">Montant TTC</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{lineItems}}
+    </tbody>
+</table>
+
+<!-- BOTTOM SPLIT -->
+<table class="summary">
+    <tr>
+
+        <!-- CONDITIONS -->
+        <td class="conditions">
             <h4>Conditions de paiement</h4>
-            <p><strong>45 jours</strong></p>
-            <p><strong>Pénalités de retard</strong></p>
-            <p>3 fois le taux légal</p>
-            <p><strong>Indemnité forfaitaire pour frais de recouvrement</strong></p>
-            <p>40 €</p>
-            <p>Moyens de paiement</p>
-            <p>Virement</p>
+
+            <p><strong>Délai :</strong> 45 jours</p>
+            <p><strong>Pénalités :</strong> 3 fois le taux légal</p>
+            <p><strong>Indemnité  forfaitaire pour frais de recouvrement:</strong> 40 €</p>
+            <p><strong>Paiement :</strong> Virement</p>
+
             <div class="rib">
-                <strong>Relevé d'identité Bancaire</strong>
-                <p>IBAN&#160;&#160;&#160;FR7640619805000004049065158</p>
-                <p>BIC&#160;&#160;&#160;&#160;&#160;&#160;BOUSFRPPXXX</p>
+                <strong>Relevé d'identité bancaire</strong>
+                <p><strong>IBAN</strong> : FR7640619805000004049065158</p>
+                <p><strong>BIC</strong>  : BOUSFRPPXXX</p>
             </div>
-        </div>
+        </td>
 
-        <table class="totals">
-            <tr><td class="label-cell">Total HT</td><td class="num">{{totalHt}} €</td></tr>
-            <tr><td class="label-cell">TVA (20%)</td><td class="num">{{vatAmount}} €</td></tr>
-            <tr><td class="label-cell grand-total">Total TTC</td><td class="num grand-total">{{totalTtc}} €</td></tr>
-        </table>
+        <!-- TOTALS -->
+        <td class="totals-wrapper">
+            <table class="totals">
+                <tr>
+                    <td class="label-cell">Total HT</td>
+                    <td class="num">{{totalHt}} €</td>
+                </tr>
+                <tr>
+                    <td class="label-cell">TVA (20%)</td>
+                    <td class="num">{{vatAmount}} €</td>
+                </tr>
+                <tr>
+                    <td class="label-cell grand-total">Total TTC</td>
+                    <td class="num grand-total">{{totalTtc}} €</td>
+                </tr>
+            </table>
+        </td>
 
-    </div>
+    </tr>
+</table>
+
 </body>
 </html>
