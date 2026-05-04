@@ -4,7 +4,7 @@ import java.time.Year;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class SequenceService {
-    private final AtomicInteger sequence = new AtomicInteger(0);
+    private final AtomicInteger sequence = new AtomicInteger(3);
 
     public String nextInvoiceNumber() {
         int next = sequence.incrementAndGet();
