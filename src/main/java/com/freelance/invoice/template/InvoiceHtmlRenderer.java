@@ -19,7 +19,9 @@ public class InvoiceHtmlRenderer {
             rows.append("""
                     <tr>
                         <td>%s</td>
+                        <td class=\"num\">Jour</td>
                         <td class=\"num\">%s</td>
+                        <td class=\"num\">%s €</td>
                         <td class=\"num\">%s €</td>
                         <td class=\"num\">%s €</td>
                     </tr>
@@ -27,7 +29,8 @@ public class InvoiceHtmlRenderer {
                     escape(line.description()),
                     formatNumber(line.quantity()),
                     formatCurrency(line.unitPrice()),
-                    formatCurrency(line.total())));
+                    formatCurrency(line.total()),
+                    formatCurrency(line.total().multiply(java.math.BigDecimal.ONE.add(invoice.vatRate())))));
         }
 
         return template
@@ -48,6 +51,8 @@ public class InvoiceHtmlRenderer {
                 .replace("{{clientPostalCode}}", escape(invoice.client().postalCode()))
                 .replace("{{clientCity}}", escape(invoice.client().city()))
                 .replace("{{clientCountry}}", escape(invoice.client().country()))
+                .replace("{{clientSiret}}", escape(invoice.client().siret()))
+                .replace("{{clientVat}}", escape(invoice.client().vatNumber()))
                 .replace("{{lineItems}}", rows.toString())
                 .replace("{{totalHt}}", formatCurrency(invoice.totalHt()))
                 .replace("{{vatRate}}", formatNumber(invoice.vatRate().multiply(java.math.BigDecimal.valueOf(100))))
