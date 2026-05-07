@@ -1,0 +1,157 @@
+# =========================================================
+# GLOBAL
+# =========================================================
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Logs
+logs/
+*.log
+*.out
+
+# Temp
+tmp/
+temp/
+*.tmp
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# =========================================================
+# JAVA / MAVEN / SPRING BOOT
+# =========================================================
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# Wrapper
+.mvn/wrapper/maven-wrapper.jar
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Spring Boot
+spring.log
+
+# =========================================================
+# TESTS / REPORTS
+# =========================================================
+
+# Coverage
+coverage/
+jacoco.exec
+/site/
+
+# Test reports
+surefire-reports/
+failsafe-reports/
+
+# =========================================================
+# NODE / FRONTEND
+# =========================================================
+
+node_modules/
+dist/
+build/
+.next/
+.angular/
+.npm/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================================================
+# DOCKER
+# =========================================================
+
+# Docker override local
+docker-compose.override.yml
+
+# Volumes / local db
+data/
+mongodb/
+postgres-data/
+mysql-data/
+
+# =========================================================
+# KAFKA / REDIS / ELASTIC
+# =========================================================
+
+kafka-logs/
+redis-data/
+elasticsearch-data/
+
+# =========================================================
+# FILES GENERATED
+# =========================================================
+
+generated/
+*.generated.*
+
+# =========================================================
+# SECURITY
+# =========================================================
+
+*.pem
+*.key
+*.p12
+*.jks
+secrets/
+credentials/
+
+# =========================================================
+# TERRAFORM
+# =========================================================
+
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# =========================================================
+# KUBERNETES
+# =========================================================
+
+*.kubeconfig
+
+# =========================================================
+# MAC / LINUX
+# =========================================================
+
+.AppleDouble
+.LSOverride
+
+# =========================================================
+# WINDOWS
+# =========================================================
+
+ehthumbs.db
+Icon?
+
+# =========================================================
+# OPTIONAL
+# =========================================================
+
+# Keep empty dirs
+!.gitkeep
