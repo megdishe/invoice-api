@@ -68,9 +68,7 @@ export class AppComponent implements OnInit {
   }
 
   getInvoiceDownloadLink(invoice: any): string {
-    const path = invoice?.pdfPath;
-    if (!path) return '';
-    if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('/')) return path;
-    return `/${path}`;
+    const id = invoice?.id;
+    return id ? `${this.apiBase}/api/invoices/${id}/pdf` : '';
   }
 }
