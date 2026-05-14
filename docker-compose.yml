@@ -12,7 +12,8 @@ services:
       - ./docker/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
 
   invoice-api:
-    build: .
+    build:
+      context: ./invoice-api
     container_name: invoice-api
     depends_on:
       - mongodb
@@ -21,6 +22,18 @@ services:
     environment:
       MONGODB_URI: mongodb://mongodb:27017/invoice_api
       SERVER_PORT: 8080
+
+  invoice-front:
+    image: node:22-alpine
+    container_name: invoice-front
+    working_dir: /app
+    depends_on:
+      - invoice-api
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./invoice-front:/app
+    command: sh -c "npm install && npm start -- --host 0.0.0.0 --port 4200"
 
 volumes:
   mongo_data:
