@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
   private http = inject(HttpClient);
-  private apiBase = 'http://localhost:8080';
+  private apiBase = '';
 
   status = 'Ready';
   companies: any[] = [];

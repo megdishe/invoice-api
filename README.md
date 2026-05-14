@@ -18,8 +18,8 @@ docker compose up --build
 ```
 
 Services:
-- API: `http://localhost:8080`
-- Frontend: `http://localhost:4200`
+- Frontend (includes `/api` reverse proxy to backend): `http://localhost:4200`
+- API (direct access): `http://localhost:8080`
 - MongoDB: `mongodb://localhost:27017`
 
 ## Development notes
